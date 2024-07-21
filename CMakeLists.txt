@@ -17,15 +17,26 @@ find_package(glfw3 REQUIRED)
 # )
 
 # add_executable(${PROJ_NAME} ${PROJECT_SOURCES})
-add_library(${PROJ_NAME} SHARED)
+set(INC_FILES)
+list(APPEND INC_FILES
+    ./Bagel/src/Bagel.h
+    ./Bagel/src/Bagel/Application.h
+    ./Bagel/src/Bagel/Core.h
+    ./Bagel/src/Bagel/EnterPoint.h
+)
+add_library(${PROJ_NAME} SHARED ${INC_FILES})
+
+add_compile_definitions(BG_PLATFORM_WINDOWS)
+add_compile_definitions(BG_BUILD_DLL)
 
 target_sources(${PROJ_NAME}
     PUBLIC
-        ./Bagel/src/Test.cpp)
+        ./Bagel/src/Bagel/Application.cpp)
 
 set(INC_DIRS)
 list(APPEND INC_DIRS
     ./Bagel/src
+    ./Bagel/src/Bagel
 )
 target_include_directories(${PROJ_NAME}
     PUBLIC 

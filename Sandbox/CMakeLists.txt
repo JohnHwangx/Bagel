@@ -7,8 +7,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(${MODULE_NAME} )
 
+add_compile_definitions(BG_PLATFORM_WINDOWS)
+
+set(INC_DIRS)
+list(APPEND INC_DIRS
+    ../Bagel/src
+)
+target_include_directories(${MODULE_NAME}
+    PUBLIC 
+    ${INC_DIRS}
+)
+
 target_sources(${MODULE_NAME}
     PUBLIC
-        ./Application.cpp)
+        ./SandboxApp.cpp)
 
 target_link_libraries(${MODULE_NAME} Bagel )
