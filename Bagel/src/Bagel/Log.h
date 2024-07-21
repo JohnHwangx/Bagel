@@ -21,10 +21,10 @@ namespace Bagel {
 #define BG_CORE_INFO(...)	::Bagel::Log::GetColorLogger()->info(__VA_ARGS__)
 #define BG_CORE_WARN(...)	::Bagel::Log::GetColorLogger()->warn(__VA_ARGS__)
 #define BG_CORE_ERROR(...)	::Bagel::Log::GetColorLogger()->error(__VA_ARGS__)
-#define BG_CORE_FATAR(...)	::Bagel::Log::GetColorLogger()->fatal(__VA_ARGS__)
+#define BG_CORE_FATAL(...)	::Bagel::Log::GetColorLogger()->fatal(__VA_ARGS__)
 
 #define BG_TRACE(...)		::Bagel::Log::GetClinetLogger()->trace(__VA_ARGS__)
 #define BG_INFO(...)		::Bagel::Log::GetClinetLogger()->info(__VA_ARGS__)
 #define BG_WARN(...)		::Bagel::Log::GetClinetLogger()->warn(__VA_ARGS__)
 #define BG_ERROR(...)		::Bagel::Log::GetClinetLogger()->error(__VA_ARGS__)
-#define BG_FATAR(...)		::Bagel::Log::GetClinetLogger()->fatal(__VA_ARGS__)
+#define BG_FATAL(...)		::Bagel::Log::GetClinetLogger()->fatal(__VA_ARGS__)
