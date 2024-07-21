@@ -12,6 +12,7 @@ add_compile_definitions(BG_PLATFORM_WINDOWS)
 set(INC_DIRS)
 list(APPEND INC_DIRS
     ../Bagel/src
+    ../Bagel/src/Bagel
 )
 target_include_directories(${MODULE_NAME}
     PUBLIC 

@@ -1,5 +1,4 @@
 #include <Bagel.h>
-#include <iostream>
 
 class Sandbox :public Bagel::Application
 {

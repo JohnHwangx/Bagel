@@ -12,26 +12,24 @@ find_package(glm REQUIRED)
 
 find_package(glfw3 REQUIRED)
 
-# set(PROJECT_SOURCES
-        # main.cpp
-# )
-
-# add_executable(${PROJ_NAME} ${PROJECT_SOURCES})
 set(INC_FILES)
 list(APPEND INC_FILES
     ./Bagel/src/Bagel.h
     ./Bagel/src/Bagel/Application.h
     ./Bagel/src/Bagel/Core.h
     ./Bagel/src/Bagel/EnterPoint.h
+    ./Bagel/src/Bagel/Log.h
 )
-add_library(${PROJ_NAME} SHARED ${INC_FILES})
+add_library(${PROJ_NAME} STATIC ${INC_FILES})
 
 add_compile_definitions(BG_PLATFORM_WINDOWS)
 add_compile_definitions(BG_BUILD_DLL)
 
 target_sources(${PROJ_NAME}
     PUBLIC
-        ./Bagel/src/Bagel/Application.cpp)
+        ./Bagel/src/Bagel/Application.cpp
+        ./Bagel/src/Bagel/Log.cpp
+)
 
 set(INC_DIRS)
 list(APPEND INC_DIRS

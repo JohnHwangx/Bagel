@@ -13,6 +13,6 @@ namespace Bagel {
 
     void Application::Run()
     {
-
+        while (true);
     }
 }
