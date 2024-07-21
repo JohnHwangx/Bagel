@@ -9,6 +9,8 @@ find_package(spdlog REQUIRED)
 
 find_package(glm REQUIRED)
 
+find_package(glfw3  REQUIRED)
+
 set(PROJECT_SOURCES
         main.cpp
 )
@@ -19,4 +21,5 @@ target_link_libraries(Bagel
     PUBLIC 
         spdlog::spdlog
         glm::glm
+        glfw
 )
