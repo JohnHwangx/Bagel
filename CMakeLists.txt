@@ -12,20 +12,23 @@ find_package(glm REQUIRED)
 
 find_package(glfw3 REQUIRED)
 
-set(INC_FILES)
-list(APPEND INC_FILES
-    ./Bagel/src/Bagel.h
-    ./Bagel/src/Bagel/Application.h
-    ./Bagel/src/Bagel/Core.h
-    ./Bagel/src/Bagel/EnterPoint.h
-    ./Bagel/src/Bagel/Log.h
-)
-add_library(${PROJ_NAME} STATIC ${INC_FILES})
+file(GLOB_RECURSE HEAD_FILES "./Bagel/src/*.h")
+#file(GLOB HEAD_FILES "./Bagel/src/*.h" "./Bagel/src/Bagel/*.h")
+#set(HEAD_FILES)
+#list(APPEND HEAD_FILES
+#    ./Bagel/src/Bagel.h
+#    ./Bagel/src/Bagel/Application.h
+#    ./Bagel/src/Bagel/Core.h
+#    ./Bagel/src/Bagel/EnterPoint.h
+#    ./Bagel/src/Bagel/Log.h
+#)
+set(LIB_NAME Bagel)
+add_library(${LIB_NAME} STATIC ${HEAD_FILES})
 
 add_compile_definitions(BG_PLATFORM_WINDOWS)
 add_compile_definitions(BG_BUILD_DLL)
 
-target_sources(${PROJ_NAME}
+target_sources(${LIB_NAME}
     PUBLIC
         ./Bagel/src/Bagel/Application.cpp
         ./Bagel/src/Bagel/Log.cpp
@@ -36,7 +39,7 @@ list(APPEND INC_DIRS
     ./Bagel/src
     ./Bagel/src/Bagel
 )
-target_include_directories(${PROJ_NAME}
+target_include_directories(${LIB_NAME}
     PUBLIC 
     ${INC_DIRS}
 )
@@ -47,9 +50,10 @@ list(APPEND LINK_LIBS
     glm::glm
     glfw
 )
-target_link_libraries(${PROJ_NAME} 
+target_link_libraries(${LIB_NAME} 
     PUBLIC
         ${LINK_LIBS}
 )
 
+add_library(${PROJ_NAME}::${LIB_NAME} ALIAS ${LIB_NAME})
 add_subdirectory(Sandbox)
