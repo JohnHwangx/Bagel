@@ -1,8 +1,6 @@
 #pragma once
 
-#include <string>
-#include <functional>
-
+#include "bgpch.h"
 #include "Bagel/Core.h"
 
 namespace Bagel {

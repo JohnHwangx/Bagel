@@ -1,3 +1,4 @@
+#include "bgpch.h"
 #include "Application.h"
 
 #include "Bagel/Log.h"

@@ -22,6 +22,8 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/Log.cpp
 )
 
+target_precompile_headers(${LIB_NAME} PRIVATE "Bagel/src/bgpch.h")
+
 add_compile_definitions(BG_PLATFORM_WINDOWS)
 add_compile_definitions(BG_BUILD_DLL)
 
