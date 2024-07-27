@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.22)
 
 set(PROJ_NAME Bagel)
 project(${PROJ_NAME} VERSION 0.0.1 LANGUAGES CXX)
@@ -13,26 +13,19 @@ find_package(glm REQUIRED)
 find_package(glfw3 REQUIRED)
 
 file(GLOB_RECURSE HEAD_FILES "./Bagel/src/*.h")
-#file(GLOB HEAD_FILES "./Bagel/src/*.h" "./Bagel/src/Bagel/*.h")
-#set(HEAD_FILES)
-#list(APPEND HEAD_FILES
-#    ./Bagel/src/Bagel.h
-#    ./Bagel/src/Bagel/Application.h
-#    ./Bagel/src/Bagel/Core.h
-#    ./Bagel/src/Bagel/EnterPoint.h
-#    ./Bagel/src/Bagel/Log.h
-#)
+
 set(LIB_NAME Bagel)
 add_library(${LIB_NAME} STATIC ${HEAD_FILES})
+target_sources(${LIB_NAME}
+    PUBLIC
+        Bagel/src/Bagel/Application.cpp
+        Bagel/src/Bagel/Log.cpp
+)
+
+target_precompile_headers(${LIB_NAME} PRIVATE "Bagel/src/bgpch.h")
 
 add_compile_definitions(BG_PLATFORM_WINDOWS)
 add_compile_definitions(BG_BUILD_DLL)
-
-target_sources(${LIB_NAME}
-    PUBLIC
-        ./Bagel/src/Bagel/Application.cpp
-        ./Bagel/src/Bagel/Log.cpp
-)
 
 set(INC_DIRS)
 list(APPEND INC_DIRS
