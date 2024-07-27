@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.22)
 set(PROJ_NAME Bagel)
 project(${PROJ_NAME} VERSION 0.0.1 LANGUAGES CXX)
 
+set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -20,6 +21,7 @@ target_sources(${LIB_NAME}
     PUBLIC
         Bagel/src/Bagel/Application.cpp
         Bagel/src/Bagel/Log.cpp
+        Bagel/src/Platform/Windows/WindowsWindow.cpp
 )
 
 target_precompile_headers(${LIB_NAME} PRIVATE "Bagel/src/bgpch.h")
@@ -47,6 +49,17 @@ target_link_libraries(${LIB_NAME}
     PUBLIC
         ${LINK_LIBS}
 )
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR})
+
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMakeTargets")
+
+message("${CMAKE_BUILD_TYPE}")
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")  
+    # Debug模式，添加DEBUG预处理器定义  
+    target_compile_definitions(${LIB_NAME} PRIVATE BG_DEBUG)
+endif()
 
 add_library(${PROJ_NAME}::${LIB_NAME} ALIAS ${LIB_NAME})
 add_subdirectory(Sandbox)

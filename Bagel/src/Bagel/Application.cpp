@@ -9,7 +9,7 @@
 namespace Bagel {
 	Application::Application()
 	{
-
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -19,10 +19,9 @@ namespace Bagel {
 
 	void Application::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-		//std::cout << e << std::endl;
-		BG_TRACE(e.ToString());
-
-		while (true);
+		while (m_Running)
+		{
+			m_Window->OnUpdate();
+		}
 	}
 }
