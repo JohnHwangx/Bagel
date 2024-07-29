@@ -13,6 +13,8 @@ find_package(glm REQUIRED)
 
 find_package(glfw3 REQUIRED)
 
+find_package(OpenGL REQUIRED)
+
 file(GLOB_RECURSE HEAD_FILES "./Bagel/src/*.h")
 
 set(LIB_NAME Bagel)
@@ -44,6 +46,7 @@ list(APPEND LINK_LIBS
     spdlog::spdlog
     glm::glm
     glfw
+    OpenGL::GL
 )
 target_link_libraries(${LIB_NAME} 
     PUBLIC

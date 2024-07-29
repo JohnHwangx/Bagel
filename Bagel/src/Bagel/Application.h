@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Core.h"
-#include <Window.h>
+#include "Window.h"
+#include "Events/ApplicationEvent.h"
 
-namespace Bagel{
+namespace Bagel {
 
     class BAGEL_API Application
     {
@@ -11,7 +12,12 @@ namespace Bagel{
         Application();
         virtual ~Application();
 
-        void Run();
+        void Run(); 
+        void OnEvent(Event& e);
+
+    private:
+        bool OnWindowClosed(WindowCloseEvent& e);
+
     private:
         std::unique_ptr<Window> m_Window;
         bool m_Running = true;
