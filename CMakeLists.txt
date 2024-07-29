@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.22)
 set(PROJ_NAME Bagel)
 project(${PROJ_NAME} VERSION 0.0.1 LANGUAGES CXX)
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -31,7 +33,7 @@ target_sources(${LIB_NAME}
 target_precompile_headers(${LIB_NAME} PRIVATE "Bagel/src/bgpch.h")
 
 add_compile_definitions(BG_PLATFORM_WINDOWS)
-add_compile_definitions(BG_BUILD_DLL)
+add_compile_definitions(BG_BUILD_DLL GLFW_INCLUDE_NONE)
 
 set(INC_DIRS)
 list(APPEND INC_DIRS
@@ -43,12 +45,15 @@ target_include_directories(${LIB_NAME}
     ${INC_DIRS}
 )
 
+add_subdirectory(Bagel/vendor/glad)
+
 set(LINK_LIBS)
 list(APPEND LINK_LIBS 
     spdlog::spdlog
     glm::glm
     glfw
     OpenGL::GL
+    Glad
 )
 target_link_libraries(${LIB_NAME} 
     PUBLIC
@@ -56,9 +61,6 @@ target_link_libraries(${LIB_NAME}
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR})
-
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMakeTargets")
 
 message("${CMAKE_BUILD_TYPE}")
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")  
