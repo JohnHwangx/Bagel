@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "Window.h"
 #include "Events/ApplicationEvent.h"
+#include "LayerStack.h"
 
 namespace Bagel {
 
@@ -14,6 +15,8 @@ namespace Bagel {
 
         void Run(); 
         void OnEvent(Event& e);
+        void PushLayer(Layer* layer);
+        void PushOverlay(Layer* layer);
 
     private:
         bool OnWindowClosed(WindowCloseEvent& e);
@@ -21,6 +24,7 @@ namespace Bagel {
     private:
         std::unique_ptr<Window> m_Window;
         bool m_Running = true;
+        LayerStack m_LayerStack;
     };
 
     Application* CreateApplication();
