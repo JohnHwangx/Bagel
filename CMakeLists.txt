@@ -28,6 +28,8 @@ target_sources(${LIB_NAME}
         Bagel/src/Platform/Windows/WindowsWindow.cpp
         Bagel/src/Bagel/Layer.cpp
         Bagel/src/Bagel/LayerStack.cpp
+        Bagel/src/Bagel/ImGui/ImGuiLayer.cpp
+        Bagel/src/Platform/OpenGL/ImGuiOpenGLRenderer.cpp
 )
 
 target_precompile_headers(${LIB_NAME} PRIVATE "Bagel/src/bgpch.h")
@@ -45,7 +47,7 @@ target_include_directories(${LIB_NAME}
     ${INC_DIRS}
 )
 
-add_subdirectory(Bagel/vendor/glad)
+add_subdirectory(Bagel/vendor)
 
 set(LINK_LIBS)
 list(APPEND LINK_LIBS 
@@ -54,6 +56,7 @@ list(APPEND LINK_LIBS
     glfw
     OpenGL::GL
     Glad
+    ImGui
 )
 target_link_libraries(${LIB_NAME} 
     PUBLIC
