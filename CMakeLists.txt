@@ -26,6 +26,7 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/Application.cpp
         Bagel/src/Bagel/Log.cpp
         Bagel/src/Platform/Windows/WindowsWindow.cpp
+        Bagel/src/Platform/Windows/WindowsInput.cpp
         Bagel/src/Bagel/Layer.cpp
         Bagel/src/Bagel/LayerStack.cpp
         Bagel/src/Bagel/ImGui/ImGuiLayer.cpp
