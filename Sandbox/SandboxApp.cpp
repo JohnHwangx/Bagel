@@ -9,12 +9,19 @@ public:
 
 	void OnUpdate() override
 	{
-		BG_INFO("ExampleLayer::Update");
+		if (Bagel::Input::IsKeyPressed(HZ_KEY_TAB))
+			BG_TRACE("Tab key is pressed (poll)!");
 	}
 
 	void OnEvent(Bagel::Event& event) override
 	{
-		BG_TRACE("{0}", event.ToString());
+		if (event.GetEventType() == Bagel::EventType::KeyPressed)
+		{
+			Bagel::KeyPressedEvent& e = (Bagel::KeyPressedEvent&)event;
+			if (e.GetKeyCode() == HZ_KEY_TAB)
+				BG_TRACE("Tab key is pressed (event)!");
+			BG_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 

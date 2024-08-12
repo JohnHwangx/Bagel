@@ -48,9 +48,6 @@ namespace Bagel {
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
-			auto [x, y] = Input::GetMousePosition();
-			BG_CORE_TRACE("{0}, {1}", x, y);
-
 			m_Window->OnUpdate();
 		}
 	}
@@ -59,8 +56,6 @@ namespace Bagel {
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClosed));
-
-		BG_CORE_TRACE("{0}", e.ToString());
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
