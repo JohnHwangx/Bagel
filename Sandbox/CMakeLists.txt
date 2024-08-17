@@ -11,4 +11,5 @@ add_compile_definitions(BG_PLATFORM_WINDOWS)
 
 target_link_libraries(${MODULE_NAME} PUBLIC 
     Bagel::Bagel
+    ImGui
 )

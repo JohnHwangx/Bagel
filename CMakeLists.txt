@@ -30,7 +30,7 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/Layer.cpp
         Bagel/src/Bagel/LayerStack.cpp
         Bagel/src/Bagel/ImGui/ImGuiLayer.cpp
-        Bagel/src/Platform/OpenGL/ImGuiOpenGLRenderer.cpp
+        Bagel/src/Bagel/ImGui/ImGuiBuild.cpp
 )
 
 target_precompile_headers(${LIB_NAME} PRIVATE "Bagel/src/bgpch.h")

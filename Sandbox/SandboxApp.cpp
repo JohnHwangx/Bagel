@@ -1,4 +1,5 @@
 #include <Bagel.h>
+#include "imgui.h"
 
 class ExampleLayer :public Bagel::Layer
 {
@@ -31,7 +32,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushLayer(new Bagel::ImGuiLayer());
+		//PushLayer(new Bagel::ImGuiLayer());
 	}
 
 	~Sandbox()
