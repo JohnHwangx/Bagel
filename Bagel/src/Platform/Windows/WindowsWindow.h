@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Bagel/Window.h"
+#include "Bagel/Renderer/GraphicsContext.h"
 
-#include  <GLFW/glfw3.h>
+#include <GLFW/glfw3.h>
 
 BAGEL_NAMESPACE_BEGIN
 
@@ -29,6 +30,7 @@ private:
 	virtual void Shutdown();
 private:
 	GLFWwindow* m_Window;
+	GraphicsContext* m_Context;
 
 	struct WindowData
 	{
