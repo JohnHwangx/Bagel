@@ -14,6 +14,13 @@ public:
 			BG_TRACE("Tab key is pressed (poll)!");
 	}
 
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
+
 	void OnEvent(Bagel::Event& event) override
 	{
 		if (event.GetEventType() == Bagel::EventType::KeyPressed)
