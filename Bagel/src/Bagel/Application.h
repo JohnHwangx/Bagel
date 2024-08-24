@@ -5,6 +5,7 @@
 #include "Events/ApplicationEvent.h"
 #include "LayerStack.h"
 #include "ImGui/ImGuiLayer.h"
+#include "Renderer/Shader.h"
 
 namespace Bagel {
 
@@ -35,6 +36,8 @@ namespace Bagel {
         static Application* s_Instance;
 
         unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+
+        std::unique_ptr<Shader> m_Shader;
     };
 
     Application* CreateApplication();
