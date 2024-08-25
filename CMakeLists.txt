@@ -25,14 +25,17 @@ target_sources(${LIB_NAME}
     PUBLIC
         Bagel/src/Bagel/Application.cpp
         Bagel/src/Bagel/Log.cpp
-        Bagel/src/Platform/Windows/WindowsWindow.cpp
-        Bagel/src/Platform/Windows/WindowsInput.cpp
         Bagel/src/Bagel/Layer.cpp
         Bagel/src/Bagel/LayerStack.cpp
         Bagel/src/Bagel/ImGui/ImGuiLayer.cpp
         Bagel/src/Bagel/ImGui/ImGuiBuild.cpp
         Bagel/src/Bagel/Renderer/Shader.cpp
+        Bagel/src/Bagel/Renderer/Renderer.cpp
+        Bagel/src/Bagel/Renderer/Buffer.cpp
         Bagel/src/Platform/OpenGL/OpenGLContext.cpp
+        Bagel/src/Platform/OpenGL/OpenGLBuffer.cpp
+        Bagel/src/Platform/Windows/WindowsWindow.cpp
+        Bagel/src/Platform/Windows/WindowsInput.cpp
 )
 
 target_precompile_headers(${LIB_NAME} PRIVATE "Bagel/src/bgpch.h")
