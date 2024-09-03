@@ -32,8 +32,10 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/Renderer/Shader.cpp
         Bagel/src/Bagel/Renderer/Renderer.cpp
         Bagel/src/Bagel/Renderer/Buffer.cpp
+        Bagel/src/Bagel/Renderer/VertexArray.cpp
         Bagel/src/Platform/OpenGL/OpenGLContext.cpp
         Bagel/src/Platform/OpenGL/OpenGLBuffer.cpp
+        Bagel/src/Platform/OpenGL/OpenGLVertexArray.cpp
         Bagel/src/Platform/Windows/WindowsWindow.cpp
         Bagel/src/Platform/Windows/WindowsInput.cpp
 )
