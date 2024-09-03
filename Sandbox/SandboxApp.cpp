@@ -114,22 +114,23 @@ public:
 		m_BlueShader.reset(new Bagel::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Bagel::Timestep ts) override
 	{
+		BG_TRACE("DeltaTime:{0}, millionTime({1})", ts.GetSeconds(), ts.GetMilliseconds());
 		if (Bagel::Input::IsKeyPressed(HZ_KEY_LEFT))
-			m_CameraPosition.x += m_CameraSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 		else if (Bagel::Input::IsKeyPressed(HZ_KEY_RIGHT))
-			m_CameraPosition.x -= m_CameraSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 
 		if (Bagel::Input::IsKeyPressed(HZ_KEY_DOWN))
-			m_CameraPosition.y += m_CameraSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 		else if (Bagel::Input::IsKeyPressed(HZ_KEY_UP))
-			m_CameraPosition.y -= m_CameraSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 
 		if (Bagel::Input::IsKeyPressed(HZ_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 		else if (Bagel::Input::IsKeyPressed(HZ_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
 		Bagel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Bagel::RenderCommand::Clear();
@@ -166,10 +167,10 @@ private:
 	Bagel::OrthographicCamera m_Camera;
 
 	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 0.1f;
+	float m_CameraMoveSpeed = 5.0f;
 
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 2.0f;
+	float m_CameraRotationSpeed = 180.0f;
 };
 
 class Sandbox :public Bagel::Application

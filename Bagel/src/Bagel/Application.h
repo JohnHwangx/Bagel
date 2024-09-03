@@ -2,13 +2,11 @@
 
 #include "Core.h"
 #include "Window.h"
-#include "Events/ApplicationEvent.h"
 #include "LayerStack.h"
+#include "Events/ApplicationEvent.h"
+#include "Core/Timestep.h"
+
 #include "ImGui/ImGuiLayer.h"
-#include "Renderer/Shader.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
-#include "Renderer/OrthographicCamera.h"
 
 namespace Bagel {
 
@@ -34,6 +32,7 @@ namespace Bagel {
         ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;
         LayerStack m_LayerStack;
+        float m_LastFrameTime = 0.0f;
 
     private:
         static Application* s_Instance;
