@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Bagel/Renderer/GraphicsContext.h"
+#include "Renderer/GraphicsContext.h"
 
 struct GLFWwindow;
 
