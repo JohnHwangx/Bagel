@@ -23,19 +23,22 @@ set(LIB_NAME Bagel)
 add_library(${LIB_NAME} STATIC ${HEAD_FILES})
 target_sources(${LIB_NAME}
     PUBLIC
-        Bagel/src/Bagel/Application.cpp
         Bagel/src/Bagel/Log.cpp
         Bagel/src/Bagel/Layer.cpp
         Bagel/src/Bagel/LayerStack.cpp
+        Bagel/src/Bagel/Application.cpp
         Bagel/src/Bagel/ImGui/ImGuiLayer.cpp
         Bagel/src/Bagel/ImGui/ImGuiBuild.cpp
         Bagel/src/Bagel/Renderer/Shader.cpp
-        Bagel/src/Bagel/Renderer/Renderer.cpp
         Bagel/src/Bagel/Renderer/Buffer.cpp
+        Bagel/src/Bagel/Renderer/Renderer.cpp
         Bagel/src/Bagel/Renderer/VertexArray.cpp
-        Bagel/src/Platform/OpenGL/OpenGLContext.cpp
+        Bagel/src/Bagel/Renderer/RendererAPI.cpp
+        Bagel/src/Bagel/Renderer/RenderCommand.cpp
         Bagel/src/Platform/OpenGL/OpenGLBuffer.cpp
+        Bagel/src/Platform/OpenGL/OpenGLContext.cpp
         Bagel/src/Platform/OpenGL/OpenGLVertexArray.cpp
+        Bagel/src/Platform/OpenGL/OpenGLRendererAPI.cpp
         Bagel/src/Platform/Windows/WindowsWindow.cpp
         Bagel/src/Platform/Windows/WindowsInput.cpp
 )

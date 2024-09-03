@@ -8,9 +8,13 @@ namespace Bagel {
 
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	{
-		switch (Renderer::GetAPI()) {
-		case RendererAPI::None: BG_CORE_ASSERT(false, "RendererAPI:None is currently not supported!"); return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+		switch (Renderer::GetAPI()) 
+		{
+		case RendererAPI::API::None: 
+			BG_CORE_ASSERT(false, "RendererAPI:None is currently not supported!"); 
+			return nullptr;
+		case RendererAPI::API::OpenGL: 
+			return new OpenGLVertexBuffer(vertices, size);
 		}
 		BG_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
@@ -18,9 +22,13 @@ namespace Bagel {
 
 	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
 	{
-		switch (Renderer::GetAPI()) {
-		case RendererAPI::None: BG_CORE_ASSERT(false, "RendererAPI:None is currently not supported!"); return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLIndexBuffer(indices, size);
+		switch (Renderer::GetAPI()) 
+		{
+		case RendererAPI::API::None: 
+			BG_CORE_ASSERT(false, "RendererAPI:None is currently not supported!"); 
+			return nullptr;
+		case RendererAPI::API::OpenGL: 
+			return new OpenGLIndexBuffer(indices, size);
 		}
 		BG_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
