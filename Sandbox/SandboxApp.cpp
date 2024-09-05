@@ -120,7 +120,7 @@ public:
 
 	void OnUpdate(Bagel::Timestep ts) override
 	{
-		BG_TRACE("DeltaTime:{0}, millionTime({1})", ts.GetSeconds(), ts.GetMilliseconds());
+		//BG_TRACE("DeltaTime:{0}, millionTime({1})", ts.GetSeconds(), ts.GetMilliseconds());
 		if (Bagel::Input::IsKeyPressed(HZ_KEY_LEFT))
 			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 		else if (Bagel::Input::IsKeyPressed(HZ_KEY_RIGHT))
