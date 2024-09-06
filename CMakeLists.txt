@@ -37,6 +37,7 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/Renderer/RenderCommand.cpp
         Bagel/src/Bagel/Renderer/OrthographicCamera.cpp
         Bagel/src/Platform/OpenGL/OpenGLBuffer.cpp
+        Bagel/src/Platform/OpenGL/OpenGLShader.cpp
         Bagel/src/Platform/OpenGL/OpenGLContext.cpp
         Bagel/src/Platform/OpenGL/OpenGLVertexArray.cpp
         Bagel/src/Platform/OpenGL/OpenGLRendererAPI.cpp
