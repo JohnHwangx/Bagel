@@ -18,3 +18,8 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     # Debug模式，添加DEBUG预处理器定义  
     target_compile_definitions(${MODULE_NAME} PRIVATE BG_DEBUG)
 endif()
+
+add_custom_command(
+    TARGET ${MODULE_NAME} POST_BUILD 
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/assets ${CMAKE_BINARY_DIR}/assets
+)

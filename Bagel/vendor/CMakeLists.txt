@@ -31,7 +31,7 @@ target_include_directories(ImGui
     "./imgui/"
 )
 
-add_library(stb_image STATIC "./stb/stb_image.h" "./stb_image/stb_image.cpp")
+add_library(stb_image STATIC "./stb_image/stb_image.cpp")
 target_include_directories(stb_image
     PUBLIC 
     "./stb/"
