@@ -31,6 +31,7 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/ImGui/ImGuiBuild.cpp
         Bagel/src/Bagel/Renderer/Shader.cpp
         Bagel/src/Bagel/Renderer/Buffer.cpp
+        Bagel/src/Bagel/Renderer/Texture.cpp
         Bagel/src/Bagel/Renderer/Renderer.cpp
         Bagel/src/Bagel/Renderer/VertexArray.cpp
         Bagel/src/Bagel/Renderer/RendererAPI.cpp
@@ -38,6 +39,7 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/Renderer/OrthographicCamera.cpp
         Bagel/src/Platform/OpenGL/OpenGLBuffer.cpp
         Bagel/src/Platform/OpenGL/OpenGLShader.cpp
+        Bagel/src/Platform/OpenGL/OpenGLTexture.cpp
         Bagel/src/Platform/OpenGL/OpenGLContext.cpp
         Bagel/src/Platform/OpenGL/OpenGLVertexArray.cpp
         Bagel/src/Platform/OpenGL/OpenGLRendererAPI.cpp
@@ -70,6 +72,7 @@ list(APPEND LINK_LIBS
     OpenGL::GL
     Glad
     ImGui
+    stb_image
 )
 target_link_libraries(${LIB_NAME} 
     PUBLIC

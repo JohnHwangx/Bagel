@@ -20,7 +20,7 @@ public:
 
 		m_VertexArray.reset(Bagel::VertexArray::Create());
 
-		std::shared_ptr<Bagel::VertexBuffer> vertexBuffer;
+		Bagel::Ref<Bagel::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Bagel::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		Bagel::BufferLayout layout = {
@@ -32,7 +32,7 @@ public:
 
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
-		std::shared_ptr<Bagel::IndexBuffer> indexBuffer;
+		Bagel::Ref<Bagel::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Bagel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
 		m_VertexArray->SetIndexBuffer(indexBuffer);
@@ -70,22 +70,23 @@ public:
 		)";
 		m_Shader.reset(Bagel::Shader::Create(vertexSrc, fragmentSrc));
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		m_SquareVA.reset(Bagel::VertexArray::Create());
-		std::shared_ptr<Bagel::VertexBuffer> squareVB;
+		Bagel::Ref<Bagel::VertexBuffer> squareVB;
 		squareVB.reset(Bagel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{Bagel::ShaderDataType::Float3, "a_Position"}
+			{ Bagel::ShaderDataType::Float3, "a_Position" },
+			{ Bagel::ShaderDataType::Float2, "a_TexCoord" }
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
-		std::shared_ptr<Bagel::IndexBuffer> squareIB;
+		Bagel::Ref<Bagel::IndexBuffer> squareIB;
 		squareIB.reset(Bagel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -119,6 +120,41 @@ public:
 			}
 		)";
 		m_FlatColorShader.reset(Bagel::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+			out vec2 v_TexCoord;
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(Bagel::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+		m_Texture = Bagel::Texture2D::Create("assets/textures/Checkerboard.png");
+
+		std::dynamic_pointer_cast<Bagel::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Bagel::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Bagel::Timestep ts) override
@@ -161,7 +197,9 @@ public:
 				Bagel::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
-		Bagel::Renderer::Submit(m_Shader, m_VertexArray);
+		//Bagel::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		Bagel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		Bagel::Renderer::EndScene();
 	}
@@ -180,11 +218,13 @@ public:
 
 private:
 
-	std::shared_ptr<Bagel::Shader> m_Shader;
-	std::shared_ptr<Bagel::VertexArray> m_VertexArray;
+	Bagel::Ref<Bagel::Shader> m_Shader;
+	Bagel::Ref<Bagel::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Bagel::Shader> m_FlatColorShader;
-	std::shared_ptr<Bagel::VertexArray> m_SquareVA;
+	Bagel::Ref<Bagel::Shader> m_FlatColorShader, m_TextureShader;
+	Bagel::Ref<Bagel::VertexArray> m_SquareVA;
+
+	Bagel::Ref<Bagel::Texture2D> m_Texture;
 
 	Bagel::OrthographicCamera m_Camera;
 

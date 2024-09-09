@@ -13,3 +13,8 @@ target_link_libraries(${MODULE_NAME} PUBLIC
     Bagel::Bagel
     ImGui
 )
+
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")  
+    # Debug模式，添加DEBUG预处理器定义  
+    target_compile_definitions(${MODULE_NAME} PRIVATE BG_DEBUG)
+endif()
