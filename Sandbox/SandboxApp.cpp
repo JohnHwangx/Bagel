@@ -151,7 +151,8 @@ public:
 
 		m_TextureShader.reset(Bagel::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
-		m_Texture = Bagel::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_Texture = Bagel::Texture2D::Create("assets/textures/Checkerboard.png"); 
+		m_ChernoLogoTexture = Bagel::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		std::dynamic_pointer_cast<Bagel::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<Bagel::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -201,6 +202,9 @@ public:
 		m_Texture->Bind();
 		Bagel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
+		m_ChernoLogoTexture->Bind();
+		Bagel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
 		Bagel::Renderer::EndScene();
 	}
 
@@ -224,7 +228,7 @@ private:
 	Bagel::Ref<Bagel::Shader> m_FlatColorShader, m_TextureShader;
 	Bagel::Ref<Bagel::VertexArray> m_SquareVA;
 
-	Bagel::Ref<Bagel::Texture2D> m_Texture;
+	Bagel::Ref<Bagel::Texture2D> m_Texture, m_ChernoLogoTexture;
 
 	Bagel::OrthographicCamera m_Camera;
 
