@@ -27,6 +27,7 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/Layer.cpp
         Bagel/src/Bagel/LayerStack.cpp
         Bagel/src/Bagel/Application.cpp
+        Bagel/src/Bagel/OrthographicCameraController.cpp
         Bagel/src/Bagel/ImGui/ImGuiLayer.cpp
         Bagel/src/Bagel/ImGui/ImGuiBuild.cpp
         Bagel/src/Bagel/Renderer/Shader.cpp

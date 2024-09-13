@@ -19,5 +19,6 @@
 #include "Bagel/Input.h"
 #include "Bagel/KeyCodes.h"
 #include "Bagel/MouseButtonCodes.h"
+#include "Bagel/OrthographicCameraController.h"
 
 #include "Bagel/EnterPoint.h"

@@ -9,7 +9,7 @@ class ExampleLayer :public Bagel::Layer
 {
 public:
 	ExampleLayer()
-		:Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		:Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
 		float vertices[3 * 7] = {
 				-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -133,28 +133,13 @@ public:
 	void OnUpdate(Bagel::Timestep ts) override
 	{
 		//BG_TRACE("DeltaTime:{0}, millionTime({1})", ts.GetSeconds(), ts.GetMilliseconds());
-		if (Bagel::Input::IsKeyPressed(HZ_KEY_LEFT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-		else if (Bagel::Input::IsKeyPressed(HZ_KEY_RIGHT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
+		m_CameraController.OnUpdate(ts);
 
-		if (Bagel::Input::IsKeyPressed(HZ_KEY_DOWN))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if (Bagel::Input::IsKeyPressed(HZ_KEY_UP))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-		if (Bagel::Input::IsKeyPressed(HZ_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		else if (Bagel::Input::IsKeyPressed(HZ_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
-
+		// Render
 		Bagel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Bagel::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Bagel::Renderer::BeginScene(m_Camera);
+		Bagel::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -189,9 +174,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Bagel::Event& event) override
+	void OnEvent(Bagel::Event& e) override
 	{
-
+		m_CameraController.OnEvent(e);
 	}
 
 private:
@@ -205,13 +190,7 @@ private:
 
 	Bagel::Ref<Bagel::Texture2D> m_Texture, m_ChernoLogoTexture;
 
-	Bagel::OrthographicCamera m_Camera;
-
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Bagel::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
