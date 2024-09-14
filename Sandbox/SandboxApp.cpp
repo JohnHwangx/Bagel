@@ -1,7 +1,10 @@
 #include <Bagel.h>
 #include "Platform/OpenGL/OpenGLShader.h"
 #include "imgui.h"
+#include "Sandbox2D.h"
 
+//#include <Bagel/Core/EntryPoint.h>
+#include <Bagel/EnterPoint.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -18,7 +21,7 @@ public:
 		};
 		unsigned int indices[3] = { 0, 1, 2 };
 
-		m_VertexArray.reset(Bagel::VertexArray::Create());
+		m_VertexArray = Bagel::VertexArray::Create();
 
 		Bagel::Ref<Bagel::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Bagel::VertexBuffer::Create(vertices, sizeof(vertices)));
@@ -77,7 +80,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		m_SquareVA.reset(Bagel::VertexArray::Create());
+		m_SquareVA = Bagel::VertexArray::Create();
 		Bagel::Ref<Bagel::VertexBuffer> squareVB;
 		squareVB.reset(Bagel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
@@ -200,8 +203,9 @@ class Sandbox :public Bagel::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
 		//PushLayer(new Bagel::ImGuiLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()
