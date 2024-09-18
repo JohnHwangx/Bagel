@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Bagel/Core.h"
+#include "Core.h"
 #include "Events/Event.h"
 #include "Core/Timestep.h"
 

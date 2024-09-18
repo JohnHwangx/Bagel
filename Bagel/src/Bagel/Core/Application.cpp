@@ -1,6 +1,6 @@
 #include "bgpch.h"
 #include "Application.h"
-#include "Bagel/Log.h"
+#include "Bagel/Core/Log.h"
 
 #include "Input.h"
 #include "Renderer/RenderCommand.h"

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Bagel/Layer.h"
-#include "Bagel/Events/ApplicationEvent.h"
-#include "Bagel/Events/MouseEvent.h"
-#include "Bagel/Events/KeyEvent.h"
+#include "Core/Layer.h"
+#include "Events/ApplicationEvent.h"
+#include "Events/MouseEvent.h"
+#include "Events/KeyEvent.h"
 
 BAGEL_NAMESPACE_BEGIN
 

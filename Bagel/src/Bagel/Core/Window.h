@@ -2,8 +2,8 @@
 
 #include "bgpch.h"
 
-#include "Bagel/Core.h"
-#include "Bagel/Events/Event.h"
+#include "Core/Core.h"
+#include "Events/Event.h"
 
 BAGEL_NAMESPACE_BEGIN
 

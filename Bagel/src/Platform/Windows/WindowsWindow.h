@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Bagel/Window.h"
-#include "Bagel/Renderer/GraphicsContext.h"
+#include "Core/Window.h"
+#include "Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 

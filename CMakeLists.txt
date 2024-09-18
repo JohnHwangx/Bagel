@@ -23,11 +23,10 @@ set(LIB_NAME Bagel)
 add_library(${LIB_NAME} STATIC ${HEAD_FILES})
 target_sources(${LIB_NAME}
     PUBLIC
-        Bagel/src/Bagel/Log.cpp
-        Bagel/src/Bagel/Layer.cpp
-        Bagel/src/Bagel/LayerStack.cpp
-        Bagel/src/Bagel/Application.cpp
-        Bagel/src/Bagel/OrthographicCameraController.cpp
+        Bagel/src/Bagel/Core/Log.cpp
+        Bagel/src/Bagel/Core/Layer.cpp
+        Bagel/src/Bagel/Core/LayerStack.cpp
+        Bagel/src/Bagel/Core/Application.cpp
         Bagel/src/Bagel/ImGui/ImGuiLayer.cpp
         Bagel/src/Bagel/ImGui/ImGuiBuild.cpp
         Bagel/src/Bagel/Renderer/Shader.cpp
@@ -39,6 +38,7 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/Renderer/RendererAPI.cpp
         Bagel/src/Bagel/Renderer/RenderCommand.cpp
         Bagel/src/Bagel/Renderer/OrthographicCamera.cpp
+        Bagel/src/Bagel/Renderer/OrthographicCameraController.cpp
         Bagel/src/Platform/OpenGL/OpenGLBuffer.cpp
         Bagel/src/Platform/OpenGL/OpenGLShader.cpp
         Bagel/src/Platform/OpenGL/OpenGLTexture.cpp

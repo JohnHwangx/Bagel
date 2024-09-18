@@ -23,7 +23,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Bagel/Log.h"
+#include "Core/Log.h"
 
 #ifdef BG_PALTFORM_WINDOWS
 #include <Windows.h>

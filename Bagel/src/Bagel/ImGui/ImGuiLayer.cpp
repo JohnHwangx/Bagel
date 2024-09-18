@@ -1,7 +1,7 @@
 #include "bgpch.h"
 #include "ImGuiLayer.h"
 
-#include "Bagel/Application.h"
+#include "Core/Application.h"
 #include "imgui.h"
 
 #include <GLFW/glfw3.h>

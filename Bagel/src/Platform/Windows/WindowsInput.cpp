@@ -1,7 +1,7 @@
 #include "bgpch.h"
 #include "WindowsInput.h"
 
-#include "Application.h"
+#include "Core/Application.h"
 #include <GLFW/glfw3.h>
 
 BAGEL_NAMESPACE_BEGIN

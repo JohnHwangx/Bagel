@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Bagel/Renderer/Buffer.h"
+#include "Renderer/Buffer.h"
 
 namespace Bagel {
 

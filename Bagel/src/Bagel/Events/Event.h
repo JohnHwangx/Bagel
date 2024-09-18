@@ -1,7 +1,7 @@
 #pragma once
 
 #include "bgpch.h"
-#include "Bagel/Core.h"
+#include "Core/Core.h"
 
 namespace Bagel {
 

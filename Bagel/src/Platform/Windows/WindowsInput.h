@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Bagel/Input.h"
+#include "Core/Input.h"
 
 BAGEL_NAMESPACE_BEGIN
 

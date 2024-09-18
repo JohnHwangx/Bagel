@@ -1,6 +1,6 @@
 #include "bgpch.h"
 #include "WindowsWindow.h"
-#include "Bagel/Log.h"
+#include "Core/Log.h"
 
 #include "Events/KeyEvent.h"
 #include "Events/ApplicationEvent.h"
