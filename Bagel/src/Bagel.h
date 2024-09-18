@@ -9,6 +9,7 @@
 
 #include "Bagel/Renderer/OrthographicCamera.h"
 #include "Bagel/Renderer/Renderer.h"
+#include "Bagel/Renderer/Renderer2D.h"
 #include "Bagel/Renderer/Texture.h"
 #include "Bagel/Renderer/RenderCommand.h"
 

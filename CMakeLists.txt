@@ -34,6 +34,7 @@ target_sources(${LIB_NAME}
         Bagel/src/Bagel/Renderer/Buffer.cpp
         Bagel/src/Bagel/Renderer/Texture.cpp
         Bagel/src/Bagel/Renderer/Renderer.cpp
+        Bagel/src/Bagel/Renderer/Renderer2D.cpp
         Bagel/src/Bagel/Renderer/VertexArray.cpp
         Bagel/src/Bagel/Renderer/RendererAPI.cpp
         Bagel/src/Bagel/Renderer/RenderCommand.cpp
