@@ -81,7 +81,24 @@ target_link_libraries(${LIB_NAME}
         ${LINK_LIBS}
 )
 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR})
+# source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR})
+
+macro(source_group_by_dir source_files sgbd_cur_dir)
+        foreach(sgbd_file ${${source_files}})
+            string(REGEX REPLACE ${sgbd_cur_dir}/\(.*\) \\1 sgbd_fpath ${sgbd_file})
+            string(REGEX REPLACE "\(.*\)/.*" \\1 sgbd_group_name ${sgbd_fpath})
+            string(COMPARE EQUAL ${sgbd_fpath} ${sgbd_group_name} sgbd_nogroup)
+            string(REPLACE "/" "\\" sgbd_group_name ${sgbd_group_name})
+			#message(STATUS "INCLUDE_DIR_LIST = ${sgbd_group_name}")
+            if(sgbd_nogroup)
+                set(sgbd_group_name "\\")
+            endif(sgbd_nogroup)
+            source_group(${sgbd_group_name} FILES ${sgbd_file})
+        endforeach(sgbd_file)
+endmacro(source_group_by_dir)
+file(GLOB_RECURSE project_cpps *.cpp *c *cc *h)
+set(all_files_cpp ${project_cpps})
+source_group_by_dir(all_files_cpp ${CMAKE_CURRENT_SOURCE_DIR})
 
 message("${CMAKE_BUILD_TYPE}")
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")  

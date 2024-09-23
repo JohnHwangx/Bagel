@@ -28,3 +28,7 @@ add_custom_command(
     TARGET ${MODULE_NAME} POST_BUILD 
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/assets ${CMAKE_CURRENT_BINARY_DIR}/assets
 )
+
+file(GLOB_RECURSE project_cpps *.cpp *c *cc *h)
+set(all_files_cpp ${project_cpps})
+source_group_by_dir(all_files_cpp ${CMAKE_CURRENT_SOURCE_DIR})
