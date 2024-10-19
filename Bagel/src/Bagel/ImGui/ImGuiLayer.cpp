@@ -83,10 +83,4 @@ void ImGuiLayer::End()
 	}
 }
 
-void ImGuiLayer::OnImGuiRender() 
-{
-	static bool show = true;
-	ImGui::ShowDemoWindow(&show);
-}
-
 BAGEL_NAMESPACE_END
