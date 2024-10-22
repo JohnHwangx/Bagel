@@ -22,8 +22,7 @@ public:
 
 		m_VertexArray = Bagel::VertexArray::Create();
 
-		Bagel::Ref<Bagel::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Bagel::VertexBuffer::Create(vertices, sizeof(vertices)));
+		Bagel::Ref<Bagel::VertexBuffer> vertexBuffer = Bagel::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		Bagel::BufferLayout layout = {
 			{Bagel::ShaderDataType::Float3, "a_Position"},
@@ -34,8 +33,7 @@ public:
 
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
-		Bagel::Ref<Bagel::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Bagel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		Bagel::Ref<Bagel::IndexBuffer> indexBuffer = Bagel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -80,16 +78,14 @@ public:
 		};
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		m_SquareVA = Bagel::VertexArray::Create();
-		Bagel::Ref<Bagel::VertexBuffer> squareVB;
-		squareVB.reset(Bagel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		Bagel::Ref<Bagel::VertexBuffer> squareVB = Bagel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{ Bagel::ShaderDataType::Float3, "a_Position" },
 			{ Bagel::ShaderDataType::Float2, "a_TexCoord" }
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
-		Bagel::Ref<Bagel::IndexBuffer> squareIB;
-		squareIB.reset(Bagel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		Bagel::Ref<Bagel::IndexBuffer> squareIB = Bagel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string flatColorShaderVertexSrc = R"(
@@ -128,8 +124,8 @@ public:
 		m_Texture = Bagel::Texture2D::Create("assets/textures/Checkerboard.png"); 
 		m_ChernoLogoTexture = Bagel::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Bagel::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<Bagel::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Bagel::Timestep ts) override
@@ -145,8 +141,8 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		std::dynamic_pointer_cast<Bagel::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<Bagel::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		m_FlatColorShader->Bind();
+		m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++)
 		{

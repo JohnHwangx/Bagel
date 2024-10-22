@@ -10,16 +10,16 @@
 
 BAGEL_NAMESPACE_BEGIN
 
-static bool is_GLFWInitialized = false;
+static uint8_t s_GLFWWindowCount = 0;
 
 static void GLFWErrorCallback(int error, const char* description)
 {
 	BG_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 }
 
-Window* Window::Create(const WindowProps& props)
+Scope<Window> Window::Create(const WindowProps& props)
 {
-	return new WindowsWindow(props);
+	return CreateScope<WindowsWindow>(props);
 }
 
 WindowsWindow::WindowsWindow(const WindowProps& props)
@@ -61,17 +61,18 @@ void WindowsWindow::Init(const WindowProps& props)
 
 	BG_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
-	if (!is_GLFWInitialized)
+	if (s_GLFWWindowCount == 0)
 	{
 		int success = glfwInit();
 		BG_CORE_ASSERT(success, "Could not initialize GLFW!");
 
 		glfwSetErrorCallback(GLFWErrorCallback);
-		is_GLFWInitialized = true;
 	}
 
 	m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-	m_Context = CreateScope<OpenGLContext>(m_Window);
+	++s_GLFWWindowCount;
+
+	m_Context = GraphicsContext::Create(m_Window);
 	m_Context->Init();
 
 	glfwSetWindowUserPointer(m_Window, &m_Data);
@@ -174,6 +175,12 @@ void WindowsWindow::Init(const WindowProps& props)
 void WindowsWindow::Shutdown()
 {
 	glfwDestroyWindow(m_Window);
+	--s_GLFWWindowCount;
+
+	if (s_GLFWWindowCount == 0)
+	{
+		glfwTerminate();
+	}
 }
 
 BAGEL_NAMESPACE_END

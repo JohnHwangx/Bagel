@@ -5,16 +5,16 @@
 #include <spdlog/fmt/ostr.h>
 
 namespace Bagel {
-	class BAGEL_API Log
+	class Log
 	{
 	public:
 		static void Init();
-		inline static std::shared_ptr<spdlog::logger>& GetColorLogger() { return s_ColorLogger; }
-		inline static std::shared_ptr<spdlog::logger>& GetClinetLogger() { return s_ClientLogger; }
+		inline static Ref<spdlog::logger>& GetColorLogger() { return s_ColorLogger; }
+		inline static Ref<spdlog::logger>& GetClinetLogger() { return s_ClientLogger; }
 
 	private:
-		static std::shared_ptr<spdlog::logger> s_ColorLogger;
-		static std::shared_ptr<spdlog::logger> s_ClientLogger;
+		static Ref<spdlog::logger> s_ColorLogger;
+		static Ref<spdlog::logger> s_ClientLogger;
 	};
 }
 

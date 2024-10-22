@@ -7,7 +7,7 @@ BAGEL_NAMESPACE_BEGIN
 class LayerStack
 {
 public:
-	LayerStack();
+	LayerStack() = default;
 	~LayerStack();
 
 	void PushLayer(Layer* layer);

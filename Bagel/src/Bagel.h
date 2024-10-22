@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Bagel/Core/Core.h"
 #include "Bagel/Core/Log.h"
 #include "Bagel/Core/Layer.h"
 #include "Bagel/Core/Input.h"

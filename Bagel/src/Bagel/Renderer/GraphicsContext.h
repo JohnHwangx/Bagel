@@ -7,8 +7,8 @@ namespace Bagel {
 	public:
 		virtual void Init() = 0;
 		virtual void SwapBuffers() = 0;
-	private:
 
+		static Scope<GraphicsContext> Create(void* window);
 	};
 
 }

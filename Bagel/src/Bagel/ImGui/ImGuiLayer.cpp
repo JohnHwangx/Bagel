@@ -7,8 +7,8 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-#include "backends/imgui_impl_glfw.h"
-#include "backends/imgui_impl_opengl3.h"
+#include <backends/imgui_impl_glfw.h>
+#include <backends/imgui_impl_opengl3.h>
 
 BAGEL_NAMESPACE_BEGIN
 
