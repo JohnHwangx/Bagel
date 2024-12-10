@@ -24,6 +24,7 @@
 #include <unordered_set>
 
 #include "Core/Log.h"
+#include "Debug/Instrumentor.h"
 
 #ifdef BG_PALTFORM_WINDOWS
 #include <Windows.h>
