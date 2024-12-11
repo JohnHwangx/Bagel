@@ -11,21 +11,21 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+	BG_PROFILE_FUNCTION();
+
 	m_CheckerboardTexture = Bagel::Texture2D::Create("assets/textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
 {
+	BG_PROFILE_FUNCTION();
 }
 
 void Sandbox2D::OnUpdate(Bagel::Timestep ts)
 {
 	BG_PROFILE_FUNCTION();
 	// Update
-	{
-		BG_PROFILE_SCOPE("CameraController::OnUpdate");
-		m_CameraController.OnUpdate(ts);
-	}
+	m_CameraController.OnUpdate(ts);
 
 	// Render
 	{

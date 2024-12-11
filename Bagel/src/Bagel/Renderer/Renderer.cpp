@@ -10,6 +10,8 @@ namespace Bagel {
 
 	void Renderer::Init()
 	{
+		BG_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}

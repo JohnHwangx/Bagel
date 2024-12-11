@@ -21,7 +21,10 @@ ImGuiLayer::~ImGuiLayer()
 {
 }
 
-void ImGuiLayer::OnAttach() {
+void ImGuiLayer::OnAttach() 
+{
+	BG_PROFILE_FUNCTION();
+
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -52,6 +55,8 @@ void ImGuiLayer::OnAttach() {
 
 void ImGuiLayer::OnDetach()
 {
+	BG_PROFILE_FUNCTION();
+
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
@@ -59,6 +64,8 @@ void ImGuiLayer::OnDetach()
 
 void ImGuiLayer::Begin()
 {
+	BG_PROFILE_FUNCTION();
+
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
