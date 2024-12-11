@@ -97,6 +97,7 @@ macro(source_group_by_dir source_files sgbd_cur_dir)
             source_group(${sgbd_group_name} FILES ${sgbd_file})
         endforeach(sgbd_file)
 endmacro(source_group_by_dir)
+
 file(GLOB_RECURSE project_cpps *.cpp *c *cc *h)
 set(all_files_cpp ${project_cpps})
 source_group_by_dir(all_files_cpp ${CMAKE_CURRENT_SOURCE_DIR})
